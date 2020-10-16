@@ -22,7 +22,7 @@ class Zoom {
 	 *
 	 * @param int|null $zoom
 	 */
-	public function __construct( ?int $zoom = self::DEFAULT ) {
+	public function __construct( ?int $zoom = null ) {
 		$this->zoom = $zoom;
 	}
 
@@ -34,9 +34,9 @@ class Zoom {
 	}
 
 	/**
-	 * @return int|null
+	 * @return int|string
 	 */
-	public function getZoom(): ?int {
+	public function getZoom() {
 		return $this->zoom;
 	}
 
@@ -45,8 +45,8 @@ class Zoom {
 	 *
 	 * @return Zoom
 	 */
-	public function setZoom( ?int $zoom = self::DEFAULT ): Zoom {
-		$this->zoom = is_null( $zoom ) ? $zoom
+	public function setZoom( ?int $zoom = null ): Zoom {
+		$this->zoom = is_null( $zoom ) ? ''
 			: ( in_array( $zoom, $this->getAllowedRange() ) ? $zoom : $this->getDefaultZoom() );
 
 		return $this;

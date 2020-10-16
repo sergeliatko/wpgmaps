@@ -202,7 +202,7 @@ class Options {
 	public function setZoom( ?Zoom $zoom = null ): Options {
 		$this->zoom = $this->isMultiple() ?
 			new Zoom()
-			: ( ( $zoom instanceof Zoom ) ? $zoom : new Zoom() );
+			: ( ( $zoom instanceof Zoom ) ? $zoom : new Zoom( Zoom::DEFAULT ) );
 
 		return $this;
 	}
