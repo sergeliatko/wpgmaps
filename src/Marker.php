@@ -24,6 +24,10 @@ class Marker {
 	 * @var \SergeLiatko\WPGmaps\Markers\Color $color
 	 */
 	protected $color;
+
+	/**
+	 * @var \SergeLiatko\WPGmaps\Markers\Label $label
+	 */
 	protected $label;
 
 }
