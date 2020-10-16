@@ -26,7 +26,7 @@ class Format {
 	 *
 	 * @param string|null $format
 	 */
-	public function __construct( ?string $format = self::DEFAULT ) {
+	public function __construct( ?string $format = null ) {
 		$this->setFormat( $format );
 	}
 
@@ -39,9 +39,9 @@ class Format {
 
 
 	/**
-	 * @return string|null
+	 * @return string
 	 */
-	public function getFormat(): ?string {
+	public function getFormat(): string {
 		return $this->format;
 	}
 
@@ -50,8 +50,8 @@ class Format {
 	 *
 	 * @return Format
 	 */
-	public function setFormat( ?string $format ): Format {
-		$this->format = is_null( $format ) ? $format
+	public function setFormat( ?string $format = null ): Format {
+		$this->format = is_null( $format ) ? ''
 			: ( in_array( $format, $this->getAllowedFormats() ) ? $format : $this->getDefaultFormat() );
 
 		return $this;

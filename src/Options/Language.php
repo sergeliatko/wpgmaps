@@ -11,16 +11,16 @@ namespace SergeLiatko\WPGmaps\Options;
 class Language {
 
 	/**
-	 * @var string|null $language
+	 * @var string $language
 	 */
 	protected $language;
 
 	/**
 	 * Language constructor.
 	 *
-	 * @param string|null $language
+	 * @param string $language
 	 */
-	public function __construct( ?string $language = null ) {
+	public function __construct( string $language = '' ) {
 		$this->setLanguage( $language );
 	}
 
@@ -32,18 +32,18 @@ class Language {
 	}
 
 	/**
-	 * @return string|null
+	 * @return string
 	 */
-	public function getLanguage(): ?string {
+	public function getLanguage(): string {
 		return $this->language;
 	}
 
 	/**
-	 * @param string|null $language
+	 * @param string $language
 	 *
 	 * @return Language
 	 */
-	public function setLanguage( ?string $language = null ): Language {
+	public function setLanguage( string $language = '' ): Language {
 		$this->language = ( false === ( $lg = substr( strtolower( strval( $language ) ), 0, 2 ) ) ) ?
 			null
 			: $lg;

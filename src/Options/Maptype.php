@@ -27,7 +27,7 @@ class Maptype {
 	 *
 	 * @param string|null $maptype
 	 */
-	public function __construct( ?string $maptype = self::DEFAULT ) {
+	public function __construct( ?string $maptype = null ) {
 		$this->setMaptype( $maptype );
 	}
 
@@ -40,9 +40,9 @@ class Maptype {
 
 
 	/**
-	 * @return string|null
+	 * @return string
 	 */
-	public function getMaptype(): ?string {
+	public function getMaptype(): string {
 		return $this->maptype;
 	}
 
@@ -51,8 +51,8 @@ class Maptype {
 	 *
 	 * @return Maptype
 	 */
-	public function setMaptype( ?string $maptype ): Maptype {
-		$this->maptype = is_null( $maptype ) ? $maptype
+	public function setMaptype( ?string $maptype = null ): Maptype {
+		$this->maptype = is_null( $maptype ) ? ''
 			: ( in_array( $maptype, $this->getAllowedMaptypes() ) ? $maptype : $this->getDefaultMaptype() );
 
 		return $this;

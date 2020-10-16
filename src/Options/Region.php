@@ -11,16 +11,16 @@ namespace SergeLiatko\WPGmaps\Options;
 class Region {
 
 	/**
-	 * @var string|null $region
+	 * @var string $region
 	 */
 	protected $region;
 
 	/**
 	 * Region constructor.
 	 *
-	 * @param string|null $region
+	 * @param string $region
 	 */
-	public function __construct( ?string $region = null ) {
+	public function __construct( string $region = '' ) {
 		$this->setRegion( $region );
 	}
 
@@ -33,18 +33,18 @@ class Region {
 
 
 	/**
-	 * @return string|null
+	 * @return string
 	 */
-	public function getRegion(): ?string {
+	public function getRegion(): string {
 		return $this->region;
 	}
 
 	/**
-	 * @param string|null $region
+	 * @param string $region
 	 *
 	 * @return Region
 	 */
-	public function setRegion( ?string $region = null ): Region {
+	public function setRegion( string $region = '' ): Region {
 		$this->region = ( false === ( $rg = substr( strtolower( strval( $region ) ), 0, 2 ) ) ) ?
 			null
 			: $rg;
