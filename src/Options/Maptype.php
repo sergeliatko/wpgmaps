@@ -1,13 +1,13 @@
 <?php
 
 
-namespace SergeLiatko\WPGmaps\Configurations;
+namespace SergeLiatko\WPGmaps\Options;
 
 
 /**
  * Class Maptype
  *
- * @package SergeLiatko\WPGmaps\Configurations
+ * @package SergeLiatko\WPGmaps\Options
  */
 class Maptype {
 

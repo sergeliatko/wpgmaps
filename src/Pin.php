@@ -32,6 +32,16 @@ class Pin {
 	}
 
 	/**
+	 * @return array
+	 */
+	public function __toArray(): array {
+		return array(
+			'marker' => $this->getMarker()->__toArray(),
+			'window' => $this->getWindow(),
+		);
+	}
+
+	/**
 	 * @return \SergeLiatko\WPGmaps\Marker
 	 */
 	public function getMarker(): Marker {

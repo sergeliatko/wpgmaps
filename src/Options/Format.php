@@ -1,13 +1,13 @@
 <?php
 
 
-namespace SergeLiatko\WPGmaps\Configurations;
+namespace SergeLiatko\WPGmaps\Options;
 
 
 /**
  * Class Format
  *
- * @package SergeLiatko\WPGmaps\Configurations
+ * @package SergeLiatko\WPGmaps\Options
  */
 class Format {
 

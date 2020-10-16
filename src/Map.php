@@ -10,4 +10,6 @@ namespace SergeLiatko\WPGmaps;
  */
 class Map {
 
+	protected $options;
+
 }

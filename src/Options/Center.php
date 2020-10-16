@@ -1,14 +1,14 @@
 <?php
 
 
-namespace SergeLiatko\WPGmaps\Configurations;
+namespace SergeLiatko\WPGmaps\Options;
 
 use SergeLiatko\WPGmaps\Location;
 
 /**
  * Class Center
  *
- * @package SergeLiatko\WPGmaps\Configurations
+ * @package SergeLiatko\WPGmaps\Options
  */
 class Center {
 
@@ -33,6 +33,20 @@ class Center {
 		$location = $this->getLocation();
 
 		return ( $location instanceof Location ) ? $location->__toString() : '';
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function __toArray(): array {
+		$location = $this->getLocation();
+
+		return ( $location instanceof Location ) ?
+			$location->__toArray()
+			: array(
+				'latitude'  => '',
+				'longitude' => '',
+			);
 	}
 
 	/**

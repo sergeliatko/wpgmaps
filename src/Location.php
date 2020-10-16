@@ -44,6 +44,18 @@ class Location {
 		);
 	}
 
+	/**
+	 * @return string[]
+	 */
+	public function __toArray(): array {
+		return array_map(
+			'strval',
+			array(
+				'latitude'  => $this->getLatitude(),
+				'longitude' => $this->getLongitude(),
+			)
+		);
+	}
 
 	/**
 	 * @return float
