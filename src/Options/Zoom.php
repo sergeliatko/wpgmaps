@@ -10,7 +10,7 @@ namespace SergeLiatko\WPGmaps\Options;
  */
 class Zoom {
 
-	public const DEFAULT = 14;
+	public const DEFAULT = 15;
 
 	/**
 	 * @var int|null $zoom

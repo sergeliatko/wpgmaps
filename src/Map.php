@@ -156,7 +156,7 @@ class Map {
 		}
 
 		return sprintf(
-			'<div id="wpgmap-%1$d-%2$d" class="wpgmap" data-key="%1$d"><div id="wpgmap-static-%1$d-%2$d" class="wpgmap-static" data-url="%3$s"></div></div>',
+			'<div id="wpgmap-%1$d-%2$d" class="wpgmap" data-key="%1$d"><div id="wpgmap-%1$d-%2$d-static" class="wpgmap-static" data-url="%3$s"></div></div>',
 			$this->getId(),
 			$this->getPrintIndex(),
 			esc_url( $this->getUrl() )
