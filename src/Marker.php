@@ -6,6 +6,7 @@ namespace SergeLiatko\WPGmaps;
 use SergeLiatko\WPGmaps\Markers\Color;
 use SergeLiatko\WPGmaps\Markers\Label;
 use SergeLiatko\WPGmaps\Markers\Size;
+use SergeLiatko\WPGmaps\Markers\Title;
 
 /**
  * Class Marker
@@ -18,6 +19,11 @@ class Marker {
 	 * @var \SergeLiatko\WPGmaps\Location $location
 	 */
 	protected $location;
+
+	/**
+	 * @var \SergeLiatko\WPGmaps\Markers\Title|null
+	 */
+	protected $title;
 
 	/**
 	 * @var \SergeLiatko\WPGmaps\Markers\Size|null $size
@@ -38,20 +44,23 @@ class Marker {
 	 * Marker constructor.
 	 *
 	 * @param \SergeLiatko\WPGmaps\Location           $location
+	 * @param \SergeLiatko\WPGmaps\Markers\Title|null $title
 	 * @param \SergeLiatko\WPGmaps\Markers\Size|null  $size
 	 * @param \SergeLiatko\WPGmaps\Markers\Color|null $color
 	 * @param \SergeLiatko\WPGmaps\Markers\Label|null $label
 	 */
 	public function __construct(
 		Location $location,
+		?Title $title = null,
 		?Size $size = null,
 		?Color $color = null,
 		?Label $label = null
 	) {
-		$this->location = $location;
-		$this->size     = $size;
-		$this->color    = $color;
-		$this->label    = $label;
+		$this->setLocation( $location );
+		$this->setTitle( $title );
+		$this->setSize( $size );
+		$this->setColor( $color );
+		$this->setLabel( $label );
 	}
 
 	/**
@@ -68,6 +77,24 @@ class Marker {
 	 */
 	public function setLocation( Location $location ): Marker {
 		$this->location = $location;
+
+		return $this;
+	}
+
+	/**
+	 * @return \SergeLiatko\WPGmaps\Markers\Title|null
+	 */
+	public function getTitle(): ?Title {
+		return $this->title;
+	}
+
+	/**
+	 * @param \SergeLiatko\WPGmaps\Markers\Title|null $title
+	 *
+	 * @return Marker
+	 */
+	public function setTitle( ?Title $title = null ): Marker {
+		$this->title = $title;
 
 		return $this;
 	}
@@ -132,6 +159,7 @@ class Marker {
 	public function __toArray(): array {
 		return array(
 			'location' => $this->getLocation()->__toArray(),
+			'title'    => strval( $this->getTitle() ),
 			'size'     => strval( $this->getSize() ),
 			'color'    => strval( $this->getColor() ),
 			'label'    => strval( $this->getLabel() ),

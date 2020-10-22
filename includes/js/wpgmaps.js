@@ -1,8 +1,14 @@
 /* global wpgmaps, google */
 document.addEventListener('DOMContentLoaded', function () {
+
+    //define global infowindow
     let infoWindow;
-    console.log(wpgmaps);
-    //detect high density screens
+
+    /**
+     * Detects high density screen.
+     *
+     * @returns {boolean}
+     */
     let isHighDensity = function () {
         let minResolutionQuery = 'only screen and (min-resolution: 124dpi),'
             + ' only screen and (min-resolution: 1.3dppx),'
@@ -23,25 +29,34 @@ document.addEventListener('DOMContentLoaded', function () {
         );
     };
 
-    //get map image scale
+    /**
+     * Get map image scale parameter for high density screens.
+     *
+     * @returns {string}
+     */
     let getScale = function () {
         return isHighDensity() ? '2' : '1';
     };
 
-    //load static map
+    /**
+     * Loads static map as a background image for the element.
+     *
+     * @param {Element} map
+     */
     let loadStaticMap = function (map) {
         let staticMap = map.querySelector('.wpgmap-static');
         let scale = getScale();
         let url = staticMap.getAttribute('data-url')
-            + `&scale=${scale}&size=${staticMap.clientWidth}x${staticMap.clientHeight}`;
-        staticMap.style.backgroundImage = `url(${url})`;
+            + '&scale=' + scale + '&size=' + staticMap.clientWidth + 'x' + staticMap.clientHeight;
+        staticMap.style.backgroundImage = 'url(' + url + ')';
         staticMap.addEventListener('click', loadDynamicMap);
     };
 
     // noinspection JSValidateJSDoc
     /**
-     * Translates location to LatLng
-     * @param location
+     * Translates location to LatLng.
+     *
+     * @param {Object} location
      * @returns {google.maps.LatLng}
      */
     let translateLocation = function (location) {
@@ -53,8 +68,9 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     /**
-     * Returns 5% of map horizontal size
-     * @param mapElement
+     * Returns 5% of element horizontal size.
+     *
+     * @param {Element} mapElement
      * @returns {number}
      */
     let getMapHorizontalPadding = function (mapElement) {
@@ -62,14 +78,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * Returns 5% of map vertical size
-     * @param mapElement
+     * Returns 5% of element vertical size.
+     *
+     * @param {Element} mapElement
      * @returns {number}
      */
     let getMapVerticalPadding = function (mapElement) {
         return Math.round(mapElement.clientHeight * 0.05);
     }
 
+    /**
+     * Loads dynamic map.
+     */
     let loadDynamicMap = function () {
         let mapContainer = this.parentNode;
         let mapKey = mapContainer.getAttribute('data-key');
@@ -82,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
             id: 'wpgmaps-dynamic-maps'
         });
         this.remove();
-        loader.load().then(() => {
+        loader.load().then(function () {
             //instantiate infowindow
             if (undefined === infoWindow) {
                 // noinspection JSUnresolvedVariable,JSUnresolvedFunction
@@ -105,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // noinspection JSUnresolvedFunction,JSUnresolvedVariable
                 let marker = new google.maps.Marker({
                     position: translateLocation(markerData.marker.location),
+                    title: markerData.marker.title,
                     map: map
                 });
                 //add infowindow data directly to the marker
@@ -144,7 +165,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     };
 
-    //load maps on the page
+    /**
+     * Loads static maps on the page.
+     */
     let loadMaps = function () {
         let maps = document.querySelectorAll('div.wpgmap');
         maps.forEach(loadStaticMap);
