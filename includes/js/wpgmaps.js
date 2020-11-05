@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     let getMapHorizontalPadding = function (mapElement) {
         return Math.round(mapElement.clientWidth * 0.05);
-    }
+    };
 
     /**
      * Returns 5% of element vertical size.
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     let getMapVerticalPadding = function (mapElement) {
         return Math.round(mapElement.clientHeight * 0.05);
-    }
+    };
 
     /**
      * Loads dynamic map.
