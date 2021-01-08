@@ -141,8 +141,8 @@ class Options {
 	 * @return Options
 	 */
 	public function setPins( array $pins = array() ): Options {
-		array_filter( $pins, function ( $item ) {
-			return $item instanceof Pin;
+		$pins       = array_filter( $pins, function ( $item ) {
+			return ( $item instanceof Pin );
 		} );
 		$this->pins = $pins;
 
@@ -265,7 +265,9 @@ class Options {
 	 * @return \SergeLiatko\WPGmaps\Location|null
 	 */
 	public function getFirstPinLocation(): ?Location {
-		$pins = $this->getPins();
+		$pins = array_filter( (array) $this->getPins(), function ( $maybe_pin ) {
+			return ( $maybe_pin instanceof Pin );
+		} );
 
 		return empty( $pins ) ? null : $pins[0]->getMarker()->getLocation();
 	}
