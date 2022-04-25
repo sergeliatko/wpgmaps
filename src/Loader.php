@@ -35,7 +35,7 @@ class Loader {
 	/**
 	 * @return \SergeLiatko\WPGmaps\Loader
 	 */
-	public static function getInstance() {
+	public static function getInstance(): Loader {
 		if ( !self::$instance instanceof Loader ) {
 			self::setInstance( new self() );
 		}
@@ -85,8 +85,8 @@ class Loader {
 	 * @return int
 	 */
 	public function addMap( Map $map ): int {
-		$maps = $this->getMaps();
-		array_push( $maps, $map );
+		$maps   = $this->getMaps();
+		$maps[] = $map;
 		$this->setMaps( $maps );
 
 		return ( count( $maps ) - 1 );
@@ -96,19 +96,12 @@ class Loader {
 	 * Loads scripts in footer.
 	 */
 	public function registerScripts() {
-		wp_register_script(
-			'wpgmaps-loader',
-			'https://unpkg.com/@googlemaps/js-api-loader@^1.2.0/dist/index.min.js',
-			array(),
-			null,
-			true
-		);
 		wp_enqueue_script(
 			'wpgmaps',
 			self::maybeMinify( self::pathToUrl(
 				dirname( __FILE__, 2 ) . '/includes/js/wpgmaps.js'
 			) ),
-			array( 'wpgmaps-loader' ),
+			array(),
 			null,
 			true
 		);
@@ -116,7 +109,8 @@ class Loader {
 			'wpgmaps',
 			'wpgmaps',
 			array(
-				'maps' => $this->getMapsData(),
+				'loaderUrl' => 'https://unpkg.com/@googlemaps/js-api-loader@^1.2.0/dist/index.min.js',
+				'maps'      => $this->getMapsData(),
 			)
 		);
 		wp_enqueue_style(
@@ -126,7 +120,6 @@ class Loader {
 			) ),
 			array(),
 			null,
-			'all'
 		);
 	}
 
@@ -136,7 +129,7 @@ class Loader {
 	protected function getMapsData(): array {
 		$data = array();
 		foreach ( $this->getMaps() as $map ) {
-			array_push( $data, $map->getOptions()->__toArray() );
+			$data[] = $map->getOptions()->__toArray();
 		}
 
 		return $data;
@@ -160,17 +153,21 @@ class Loader {
 	}
 
 	/**
-	 * @param $url
+	 * @param string $url
 	 *
 	 * @return string
 	 * @noinspection PhpUnused
 	 */
-	protected static function maybeMinify( $url ) {
+	protected static function maybeMinify( string $url = '' ): string {
+		if ( empty( $url ) ) {
+			return $url;
+		}
+
 		$min = self::min();
 
 		return empty( $min ) ?
 			$url
-			: preg_replace( '/(?<!\.min)(\.js|\.css)/', "{$min}$1", $url );
+			: preg_replace( '/(?<!\.min)(\.js|\.css)/', "$min$1", $url );
 	}
 
 	/**
@@ -178,7 +175,7 @@ class Loader {
 	 *
 	 * @return string
 	 */
-	protected static function min() {
+	protected static function min(): string {
 		return ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 	}
 

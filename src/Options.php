@@ -58,6 +58,11 @@ class Options {
 	protected $format;
 
 	/**
+	 * @var string|null $loadevent
+	 */
+	protected $loadevent;
+
+	/**
 	 * Options constructor.
 	 *
 	 * @param string                                     $key
@@ -68,16 +73,18 @@ class Options {
 	 * @param \SergeLiatko\WPGmaps\Options\Language|null $language
 	 * @param \SergeLiatko\WPGmaps\Options\Region|null   $region
 	 * @param \SergeLiatko\WPGmaps\Options\Format|null   $format
+	 * @param string|null                                $loadevent
 	 */
 	public function __construct(
-		string $key,
-		array $pins = array(),
-		?Maptype $maptype = null,
-		?Center $center = null,
-		?Zoom $zoom = null,
+		string    $key,
+		array     $pins = array(),
+		?Maptype  $maptype = null,
+		?Center   $center = null,
+		?Zoom     $zoom = null,
 		?Language $language = null,
-		?Region $region = null,
-		?Format $format = null
+		?Region   $region = null,
+		?Format   $format = null,
+		?string   $loadevent = null
 	) {
 		$this->setKey( $key );
 		$this->setPins( $pins );
@@ -87,6 +94,7 @@ class Options {
 		$this->setLanguage( $language );
 		$this->setRegion( $region );
 		$this->setFormat( $format );
+		$this->setLoadevent( $loadevent );
 	}
 
 	/**
@@ -94,19 +102,20 @@ class Options {
 	 */
 	public function __toArray(): array {
 		return array(
-			'key'      => strval( $this->getKey() ),
-			'pins'     => array_map(
+			'key'       => $this->getKey(),
+			'pins'      => array_map(
 				function ( $item ) {
 					return $item->__toArray();
 				},
 				$this->getPins()
 			),
-			'maptype'  => strval( $this->getMaptype() ),
-			'center'   => $this->getCenter()->__toArray(),
-			'zoom'     => strval( $this->getZoom() ),
-			'language' => strval( $this->getLanguage() ),
-			'region'   => strval( $this->getRegion() ),
-			'format'   => strval( $this->getFormat() ),
+			'maptype'   => strval( $this->getMaptype() ),
+			'center'    => $this->getCenter()->__toArray(),
+			'zoom'      => strval( $this->getZoom() ),
+			'language'  => strval( $this->getLanguage() ),
+			'region'    => strval( $this->getRegion() ),
+			'format'    => strval( $this->getFormat() ),
+			'loadevent' => $this->getLoadevent(),
 		);
 	}
 
@@ -262,10 +271,32 @@ class Options {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getLoadevent(): ?string {
+		if ( !is_string( $this->loadevent ) ) {
+			$this->setLoadevent( '' );
+		}
+
+		return $this->loadevent;
+	}
+
+	/**
+	 * @param string|null $loadevent
+	 *
+	 * @return Options
+	 */
+	public function setLoadevent( ?string $loadevent = null ): Options {
+		$this->loadevent = sanitize_text_field( strval( $loadevent ) );
+
+		return $this;
+	}
+
+	/**
 	 * @return \SergeLiatko\WPGmaps\Location|null
 	 */
 	public function getFirstPinLocation(): ?Location {
-		$pins = array_filter( (array) $this->getPins(), function ( $maybe_pin ) {
+		$pins = array_filter( $this->getPins(), function ( $maybe_pin ) {
 			return ( $maybe_pin instanceof Pin );
 		} );
 
@@ -278,7 +309,7 @@ class Options {
 	 * @return string
 	 */
 	protected function sanitizeKey( string $key ): string {
-		$key = preg_replace( '/([^a-z0-9])/i', '', $key );
+		$key = preg_replace( '/([^a-z\d])/i', '', $key );
 
 		return strval( $key );
 	}

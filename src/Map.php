@@ -156,10 +156,11 @@ class Map {
 		}
 
 		return sprintf(
-			'<div id="wpgmap-%1$d-%2$d" class="wpgmap" data-key="%1$d"><div id="wpgmap-%1$d-%2$d-static" class="wpgmap-static" data-url="%3$s"></div></div>',
+			'<div id="wpgmap-%1$d-%2$d" class="wpgmap" data-key="%1$d" data-event="%4$s"><div id="wpgmap-%1$d-%2$d-static" class="wpgmap-static" data-url="%3$s"></div></div>',
 			$this->getId(),
 			$this->getPrintIndex(),
-			esc_url( $this->getUrl() )
+			esc_url( $this->getUrl() ),
+			$this->getOptions()->getLoadevent()
 		);
 	}
 
@@ -170,7 +171,7 @@ class Map {
 		$markers = array();
 		foreach ( $this->getOptions()->getPins() as $pin ) {
 			//only marker locations are returned for each marker in static map url
-			array_push( $markers, $pin->getMarker()->getLocation()->__toString() );
+			$markers[] = $pin->getMarker()->getLocation()->__toString();
 		}
 
 		return join( '|', $markers );
