@@ -101,17 +101,17 @@ class Loader {
 			self::maybeMinify( self::pathToUrl(
 				dirname( __FILE__, 2 ) . '/includes/js/wpgmaps.js'
 			) ),
-			array(),
+			[],
 			null,
 			true
 		);
 		wp_localize_script(
 			'wpgmaps',
 			'wpgmaps',
-			array(
-				'loaderUrl' => 'https://unpkg.com/@googlemaps/js-api-loader@^1.2.0/dist/index.min.js',
+			[
+				'loaderUrl' => 'https://unpkg.com/@googlemaps/js-api-loader@^1.16.6/dist/index.min.js',
 				'maps'      => $this->getMapsData(),
-			)
+			]
 		);
 		wp_enqueue_style(
 			'wpgmaps-styles',
