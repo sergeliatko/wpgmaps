@@ -20,64 +20,64 @@ class Options {
 	/**
 	 * @var string $key
 	 */
-	protected $key;
+	protected string $key;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Pin[] $pins
+	 * @var Pin[] $pins
 	 */
-	protected $pins;
+	protected array $pins;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Options\Maptype|null $maptype
+	 * @var Maptype|null $maptype
 	 */
-	protected $maptype;
+	protected ?Maptype $maptype;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Options\Center|null $center
+	 * @var Center|null $center
 	 */
-	protected $center;
+	protected ?Center $center;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Options\Zoom|null $zoom
+	 * @var Zoom|null $zoom
 	 */
-	protected $zoom;
+	protected ?Zoom $zoom;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Options\Language|null $language
+	 * @var Language|null $language
 	 */
-	protected $language;
+	protected ?Language $language;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Options\Region|null $region
+	 * @var Region|null $region
 	 */
-	protected $region;
+	protected ?Region $region;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Options\Format|null $format
+	 * @var Format|null $format
 	 */
-	protected $format;
+	protected ?Format $format;
 
 	/**
 	 * @var string|null $loadevent
 	 */
-	protected $loadevent;
+	protected ?string $loadevent;
 
 	/**
 	 * Options constructor.
 	 *
 	 * @param string                                     $key
-	 * @param \SergeLiatko\WPGmaps\Pin[]                 $pins
-	 * @param \SergeLiatko\WPGmaps\Options\Maptype|null  $maptype
-	 * @param \SergeLiatko\WPGmaps\Options\Center|null   $center
-	 * @param \SergeLiatko\WPGmaps\Options\Zoom|null     $zoom
-	 * @param \SergeLiatko\WPGmaps\Options\Language|null $language
-	 * @param \SergeLiatko\WPGmaps\Options\Region|null   $region
-	 * @param \SergeLiatko\WPGmaps\Options\Format|null   $format
+	 * @param Pin[] $pins
+	 * @param Maptype|null  $maptype
+	 * @param Center|null   $center
+	 * @param Zoom|null     $zoom
+	 * @param Language|null $language
+	 * @param Region|null   $region
+	 * @param Format|null   $format
 	 * @param string|null                                $loadevent
 	 */
 	public function __construct(
 		string    $key,
-		array     $pins = array(),
+		array     $pins = [],
 		?Maptype  $maptype = null,
 		?Center   $center = null,
 		?Zoom     $zoom = null,
@@ -138,14 +138,14 @@ class Options {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Pin[]
+	 * @return Pin[]
 	 */
 	public function getPins(): array {
 		return $this->pins;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Pin[] $pins
+	 * @param Pin[] $pins
 	 *
 	 * @return Options
 	 */
@@ -159,14 +159,14 @@ class Options {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Options\Maptype
+	 * @return Maptype
 	 */
-	public function getMaptype(): ?Maptype {
+	public function getMaptype(): Maptype {
 		return $this->maptype;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Options\Maptype|null $maptype
+	 * @param Maptype|null $maptype
 	 *
 	 * @return Options
 	 */
@@ -177,14 +177,14 @@ class Options {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Options\Center
+	 * @return Center
 	 */
-	public function getCenter(): ?Center {
+	public function getCenter(): Center {
 		return $this->center;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Options\Center|null $center
+	 * @param Center|null $center
 	 *
 	 * @return Options
 	 */
@@ -197,14 +197,14 @@ class Options {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Options\Zoom
+	 * @return Zoom
 	 */
-	public function getZoom(): ?Zoom {
+	public function getZoom(): Zoom {
 		return $this->zoom;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Options\Zoom|null $zoom
+	 * @param Zoom|null $zoom
 	 *
 	 * @return Options
 	 */
@@ -217,14 +217,14 @@ class Options {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Options\Language
+	 * @return Language
 	 */
-	public function getLanguage(): ?Language {
+	public function getLanguage(): Language {
 		return $this->language;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Options\Language|null $language
+	 * @param Language|null $language
 	 *
 	 * @return Options
 	 */
@@ -235,14 +235,14 @@ class Options {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Options\Region
+	 * @return Region
 	 */
-	public function getRegion(): ?Region {
+	public function getRegion(): Region {
 		return $this->region;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Options\Region|null $region
+	 * @param Region|null $region
 	 *
 	 * @return Options
 	 */
@@ -253,14 +253,14 @@ class Options {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Options\Format
+	 * @return Format
 	 */
-	public function getFormat(): ?Format {
+	public function getFormat(): Format {
 		return $this->format;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Options\Format|null $format
+	 * @param Format|null $format
 	 *
 	 * @return Options
 	 */
@@ -273,7 +273,7 @@ class Options {
 	/**
 	 * @return string
 	 */
-	public function getLoadevent(): ?string {
+	public function getLoadevent(): string {
 		if ( !is_string( $this->loadevent ) ) {
 			$this->setLoadevent( '' );
 		}
@@ -293,7 +293,7 @@ class Options {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Location|null
+	 * @return Location|null
 	 */
 	public function getFirstPinLocation(): ?Location {
 		$pins = array_filter( $this->getPins(), function ( $maybe_pin ) {

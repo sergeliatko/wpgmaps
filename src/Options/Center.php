@@ -13,14 +13,14 @@ use SergeLiatko\WPGmaps\Location;
 class Center {
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Location|null
+	 * @var Location|null
 	 */
-	protected $location;
+	protected ?Location $location;
 
 	/**
 	 * Center constructor.
 	 *
-	 * @param \SergeLiatko\WPGmaps\Location|null $location
+	 * @param Location|null $location
 	 */
 	public function __construct( ?Location $location = null ) {
 		$this->setLocation( $location );
@@ -50,14 +50,14 @@ class Center {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Location|null
+	 * @return Location|null
 	 */
 	public function getLocation(): ?Location {
 		return $this->location;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Location|null $location
+	 * @param Location|null $location
 	 *
 	 * @return Center
 	 */

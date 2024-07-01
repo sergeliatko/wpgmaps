@@ -11,14 +11,14 @@ namespace SergeLiatko\WPGmaps\Markers;
 class Size {
 
 	public const DEFAULT = '';
-	public const MID     = 'mid';
-	public const SMALL   = 'small';
-	public const TINY    = 'tiny';
+	public const MID = 'mid';
+	public const SMALL = 'small';
+	public const TINY = 'tiny';
 
 	/**
 	 * @var string $size
 	 */
-	protected $size;
+	protected string $size;
 
 	/**
 	 * Size constructor.
@@ -26,14 +26,14 @@ class Size {
 	 * @param string $size
 	 */
 	public function __construct( string $size = '' ) {
-		$this->size = $size;
+		$this->setSize( $size );
 	}
 
 	/**
 	 * @return string
 	 */
 	public function __toString(): string {
-		return strval( $this->getSize() );
+		return $this->getSize();
 	}
 
 	/**

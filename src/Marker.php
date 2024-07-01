@@ -16,38 +16,38 @@ use SergeLiatko\WPGmaps\Markers\Title;
 class Marker {
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Location $location
+	 * @var Location $location
 	 */
-	protected $location;
+	protected Location $location;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Markers\Title|null
+	 * @var Title|null
 	 */
-	protected $title;
+	protected ?Title $title;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Markers\Size|null $size
+	 * @var Size|null $size
 	 */
-	protected $size;
+	protected ?Size $size;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Markers\Color|null $color
+	 * @var Color|null $color
 	 */
-	protected $color;
+	protected ?Color $color;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Markers\Label|null $label
+	 * @var Label|null $label
 	 */
-	protected $label;
+	protected ?Label $label;
 
 	/**
 	 * Marker constructor.
 	 *
-	 * @param \SergeLiatko\WPGmaps\Location           $location
-	 * @param \SergeLiatko\WPGmaps\Markers\Title|null $title
-	 * @param \SergeLiatko\WPGmaps\Markers\Size|null  $size
-	 * @param \SergeLiatko\WPGmaps\Markers\Color|null $color
-	 * @param \SergeLiatko\WPGmaps\Markers\Label|null $label
+	 * @param Location $location
+	 * @param Title|null $title
+	 * @param Size|null  $size
+	 * @param Color|null $color
+	 * @param Label|null $label
 	 */
 	public function __construct(
 		Location $location,
@@ -64,14 +64,14 @@ class Marker {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Location
+	 * @return Location
 	 */
 	public function getLocation(): Location {
 		return $this->location;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Location $location
+	 * @param Location $location
 	 *
 	 * @return Marker
 	 */
@@ -82,14 +82,14 @@ class Marker {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Markers\Title|null
+	 * @return Title|null
 	 */
 	public function getTitle(): ?Title {
 		return $this->title;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Markers\Title|null $title
+	 * @param Title|null $title
 	 *
 	 * @return Marker
 	 */
@@ -100,14 +100,14 @@ class Marker {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Markers\Size|null
+	 * @return Size|null
 	 */
 	public function getSize(): ?Size {
 		return $this->size;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Markers\Size|null $size
+	 * @param Size|null $size
 	 *
 	 * @return Marker
 	 */
@@ -118,14 +118,14 @@ class Marker {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Markers\Color|null
+	 * @return Color|null
 	 */
 	public function getColor(): ?Color {
 		return $this->color;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Markers\Color|null $color
+	 * @param Color|null $color
 	 *
 	 * @return Marker
 	 */
@@ -136,14 +136,14 @@ class Marker {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Markers\Label|null
+	 * @return Label|null
 	 */
 	public function getLabel(): ?Label {
 		return $this->label;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Markers\Label|null $label
+	 * @param Label|null $label
 	 *
 	 * @return Marker
 	 */

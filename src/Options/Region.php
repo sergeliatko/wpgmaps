@@ -13,7 +13,7 @@ class Region {
 	/**
 	 * @var string $region
 	 */
-	protected $region;
+	protected string $region;
 
 	/**
 	 * Region constructor.
@@ -28,7 +28,7 @@ class Region {
 	 * @return string
 	 */
 	public function __toString(): string {
-		return strval( $this->getRegion() );
+		return $this->getRegion();
 	}
 
 
@@ -45,9 +45,7 @@ class Region {
 	 * @return Region
 	 */
 	public function setRegion( string $region = '' ): Region {
-		$this->region = ( false === ( $rg = substr( strtolower( strval( $region ) ), 0, 2 ) ) ) ?
-			null
-			: $rg;
+		$this->region = ( '' === ( $rg = substr( strtolower( $region ), 0, 2 ) ) ) ? '' : $rg;
 
 		return $this;
 	}

@@ -9,7 +9,7 @@ class Title {
 	/**
 	 * @var string $title
 	 */
-	protected $title;
+	protected string $title;
 
 	/**
 	 * Title constructor.

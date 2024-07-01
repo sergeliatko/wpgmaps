@@ -11,19 +11,19 @@ namespace SergeLiatko\WPGmaps;
 class Pin {
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Marker $marker
+	 * @var Marker $marker
 	 */
-	protected $marker;
+	protected Marker $marker;
 
 	/**
 	 * @var string $window
 	 */
-	protected $window;
+	protected string $window;
 
 	/**
 	 * Pin constructor.
 	 *
-	 * @param \SergeLiatko\WPGmaps\Marker $marker
+	 * @param Marker $marker
 	 * @param string                      $window
 	 */
 	public function __construct( Marker $marker, string $window = '' ) {
@@ -42,14 +42,14 @@ class Pin {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Marker
+	 * @return Marker
 	 */
 	public function getMarker(): Marker {
 		return $this->marker;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Marker $marker
+	 * @param Marker $marker
 	 *
 	 * @return Pin
 	 */

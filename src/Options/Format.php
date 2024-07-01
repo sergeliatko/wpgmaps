@@ -19,7 +19,7 @@ class Format {
 	/**
 	 * @var string $format
 	 */
-	protected $format;
+	protected string $format;
 
 	/**
 	 * Format constructor.
@@ -34,7 +34,7 @@ class Format {
 	 * @return string
 	 */
 	public function __toString(): string {
-		return strval( $this->getFormat() );
+		return $this->getFormat();
 	}
 
 
@@ -51,7 +51,8 @@ class Format {
 	 * @return Format
 	 */
 	public function setFormat( ?string $format = null ): Format {
-		$this->format = is_null( $format ) ? ''
+		$this->format = is_null( $format ) ?
+			''
 			: ( in_array( $format, $this->getAllowedFormats() ) ? $format : $this->getDefaultFormat() );
 
 		return $this;

@@ -20,7 +20,7 @@ class Maptype {
 	/**
 	 * @var string|null
 	 */
-	protected $maptype;
+	protected ?string $maptype;
 
 	/**
 	 * Maptype constructor.
@@ -35,7 +35,7 @@ class Maptype {
 	 * @return string
 	 */
 	public function __toString(): string {
-		return strval( $this->getMaptype() );
+		return $this->getMaptype();
 	}
 
 
@@ -52,7 +52,8 @@ class Maptype {
 	 * @return Maptype
 	 */
 	public function setMaptype( ?string $maptype = null ): Maptype {
-		$this->maptype = is_null( $maptype ) ? ''
+		$this->maptype = is_null( $maptype ) ?
+			''
 			: ( in_array( $maptype, $this->getAllowedMaptypes() ) ? $maptype : $this->getDefaultMaptype() );
 
 		return $this;

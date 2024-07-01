@@ -11,20 +11,20 @@ namespace SergeLiatko\WPGmaps;
 class Loader {
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Loader $instance
+	 * @var Loader|null $instance
 	 */
-	protected static $instance;
+	protected static ?Loader $instance = null;
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Map[]
+	 * @var Map[]
 	 */
-	protected $maps;
+	protected array $maps;
 
 	/**
 	 * Loader constructor.
 	 */
 	protected function __construct() {
-		$this->setMaps( array() );
+		$this->setMaps( [] );
 		if ( is_admin() ) {
 			add_action( 'admin_footer', array( $this, 'registerScripts' ), 10, 0 );
 		} else {
@@ -33,10 +33,10 @@ class Loader {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Loader
+	 * @return Loader
 	 */
 	public static function getInstance(): Loader {
-		if ( !self::$instance instanceof Loader ) {
+		if ( ! self::$instance instanceof Loader ) {
 			self::setInstance( new self() );
 		}
 
@@ -44,14 +44,14 @@ class Loader {
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Loader $instance
+	 * @param Loader $instance
 	 */
-	public static function setInstance( Loader $instance ) {
+	public static function setInstance( Loader $instance ): void {
 		self::$instance = $instance;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Map $map
+	 * @param Map $map
 	 *
 	 * @return int
 	 */
@@ -62,14 +62,14 @@ class Loader {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Map[]
+	 * @return Map[]
 	 */
 	public function getMaps(): array {
 		return $this->maps;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Map[] $maps
+	 * @param Map[] $maps
 	 *
 	 * @return Loader
 	 */
@@ -80,7 +80,7 @@ class Loader {
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Map $map
+	 * @param Map $map
 	 *
 	 * @return int
 	 */
@@ -95,7 +95,7 @@ class Loader {
 	/**
 	 * Loads scripts in footer.
 	 */
-	public function registerScripts() {
+	public function registerScripts(): void {
 		wp_enqueue_script(
 			'wpgmaps',
 			self::maybeMinify( self::pathToUrl(

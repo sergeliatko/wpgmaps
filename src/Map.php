@@ -13,29 +13,29 @@ class Map {
 	public const URL_BASE = 'https://maps.googleapis.com/maps/api/staticmap';
 
 	/**
-	 * @var \SergeLiatko\WPGmaps\Options $options
+	 * @var Options $options
 	 */
-	protected $options;
+	protected Options $options;
 
 	/**
-	 * @var int $id
+	 * @var int|null $id
 	 */
-	protected $id;
+	protected ?int $id = null;
 
 	/**
 	 * @var int $printed
 	 */
-	protected $printed;
+	protected int $printed;
 
 	/**
 	 * @var string $url
 	 */
-	protected $url;
+	protected string $url;
 
 	/**
 	 * Map constructor.
 	 *
-	 * @param \SergeLiatko\WPGmaps\Options $options
+	 * @param Options $options
 	 */
 	public function __construct( Options $options ) {
 		$this->setOptions( $options );
@@ -50,14 +50,14 @@ class Map {
 	}
 
 	/**
-	 * @return \SergeLiatko\WPGmaps\Options
+	 * @return Options
 	 */
 	public function getOptions(): Options {
 		return $this->options;
 	}
 
 	/**
-	 * @param \SergeLiatko\WPGmaps\Options $options
+	 * @param Options $options
 	 *
 	 * @return Map
 	 */

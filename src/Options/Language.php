@@ -13,7 +13,7 @@ class Language {
 	/**
 	 * @var string $language
 	 */
-	protected $language;
+	protected string $language;
 
 	/**
 	 * Language constructor.
@@ -28,7 +28,7 @@ class Language {
 	 * @return string
 	 */
 	public function __toString(): string {
-		return strval( $this->getLanguage() );
+		return $this->getLanguage();
 	}
 
 	/**
@@ -44,9 +44,7 @@ class Language {
 	 * @return Language
 	 */
 	public function setLanguage( string $language = '' ): Language {
-		$this->language = ( false === ( $lg = substr( strtolower( strval( $language ) ), 0, 2 ) ) ) ?
-			null
-			: $lg;
+		$this->language = ( '' === ( $lg = substr( strtolower( $language ), 0, 2 ) ) ) ? '' : $lg;
 
 		return $this;
 	}

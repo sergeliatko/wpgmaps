@@ -13,7 +13,7 @@ class Label {
 	/**
 	 * @var string $label
 	 */
-	protected $label;
+	protected string $label;
 
 	/**
 	 * Label constructor.
@@ -21,14 +21,14 @@ class Label {
 	 * @param string $label
 	 */
 	public function __construct( string $label = '' ) {
-		$this->label = $label;
+		$this->setLabel( $label );
 	}
 
 	/**
 	 * @return string
 	 */
 	public function __toString(): string {
-		return strval( $this->getLabel() );
+		return $this->getLabel();
 	}
 
 	/**

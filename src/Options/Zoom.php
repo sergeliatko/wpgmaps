@@ -15,7 +15,7 @@ class Zoom {
 	/**
 	 * @var int|null $zoom
 	 */
-	protected $zoom;
+	protected ?int $zoom;
 
 	/**
 	 * Zoom constructor.
@@ -23,7 +23,7 @@ class Zoom {
 	 * @param int|null $zoom
 	 */
 	public function __construct( ?int $zoom = null ) {
-		$this->zoom = $zoom;
+		$this->setZoom( $zoom );
 	}
 
 	/**
@@ -36,7 +36,7 @@ class Zoom {
 	/**
 	 * @return int|string
 	 */
-	public function getZoom() {
+	public function getZoom(): int|string {
 		return $this->zoom;
 	}
 
@@ -63,7 +63,7 @@ class Zoom {
 	 * @return array
 	 */
 	protected function getAllowedRange(): array {
-		return range( 0, 21, 1 );
+		return range( 0, 21 );
 	}
 
 }

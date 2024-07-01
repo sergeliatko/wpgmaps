@@ -13,12 +13,12 @@ class Location {
 	/**
 	 * @var string
 	 */
-	protected $latitude;
+	protected string $latitude;
 
 	/**
 	 * @var string
 	 */
-	protected $longitude;
+	protected string $longitude;
 
 	/**
 	 * Location constructor.

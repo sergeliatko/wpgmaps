@@ -28,7 +28,7 @@ class Color {
 	/**
 	 * @var string $color
 	 */
-	protected $color;
+	protected string $color;
 
 	/**
 	 * Color constructor.
@@ -43,7 +43,7 @@ class Color {
 	 * @return string
 	 */
 	public function __toString(): string {
-		return strval( $this->getColor() );
+		return $this->getColor();
 	}
 
 
@@ -101,7 +101,7 @@ class Color {
 		return ( 1 === preg_match(
 				self::PATTERN,
 				$color = strtoupper( substr( $color, 0, 7 ) ) )
-		) ? $color : '';
+		) ? $color : $this->getDefaultColor();
 	}
 
 }
